@@ -23,9 +23,11 @@ class SkillResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('skillName')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Section::make("Skill Name")->schema([
+                    Forms\Components\TextInput::make('skillName')
+                        ->required()
+                        ->maxLength(255),
+                ]),
             ]);
     }
 

@@ -24,30 +24,38 @@ class ResumeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('body')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('city')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('startDate')
-                    ->required(),
-                Forms\Components\DatePicker::make('endDate')
-                    ->required(),
-                Forms\Components\Textarea::make('company')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('grade')
-                    ->columnSpanFull(),
-                Forms\Components\Select::make('type')
+                Forms\Components\Section::make('Type of Resume')->description("select type of the Resume you want to add")
+                ->schema([
+                    Forms\Components\Select::make('type')
                     ->options([
                         'experience' => 'experience',
                         'education' => 'education',
-                    ])
+                    ])->native(false)
                     ->required(),
+                ]),
+                Forms\Components\Section::make('Resume Basic data')->description("baseic information of your resume")->schema([
+                    Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->maxLength(255)->columnSpanFull(),
+                    Forms\Components\TextInput::make('city')
+                    ->required()
+                    ->maxLength(255),
+                    Forms\Components\TextInput::make('company')
+                    ->required(),
+                    Forms\Components\TextInput::make('grade'),
+                    Forms\Components\Section::make("Date")->schema([
+                        Forms\Components\DatePicker::make('startDate')
+                        ->required(),
+                        Forms\Components\DatePicker::make('endDate')
+                        ->required(),
+                    ])->columns(2)
+                ])->columns(3),
+                Forms\Components\Section::make("Resume Body")->description('Add you resume body here')->schema([
+                    Forms\Components\RichEditor::make('body')
+                        ->required()
+                        ->columnSpanFull(),
+                ]),
+               
             ]);
     }
 

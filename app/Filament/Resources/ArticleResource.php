@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Filament\Resources\ArticleResource\RelationManagers;
 use App\Models\Article;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,22 +24,26 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('title')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('creator')
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('content')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\FileUpload::make('imgUrl')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\Textarea::make('view')
-                    ->columnSpanFull(),
+                Forms\Components\Section::make('Article Creatore')->schema([
+                    Forms\Components\TextInput::make('title')
+                        ->required()
+                        ->columnSpanFull(),
+                    Forms\Components\TextInput::make('creator'),
+                    Forms\Components\TextInput::make('view'),
+                    Forms\Components\Section::make('Article Image')->schema([
+                        Forms\Components\FileUpload::make('imgUrl')
+                            ->required()
+                            ->columnSpanFull(),
+                    ]),
+                ])->columns(2),
+                Forms\Components\Section::make('Article Content')->schema([
+                    Forms\Components\RichEditor::make('content')
+                        ->required()
+                        ->columnSpanFull(),
+                ]),
                 Forms\Components\Toggle::make('publish')
                     ->required(),
-            ]);
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table

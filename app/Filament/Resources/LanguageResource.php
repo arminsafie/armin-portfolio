@@ -23,9 +23,11 @@ class LanguageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('languages')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Section::make("Add languages")->schema([
+                    Forms\Components\TextInput::make('languages')
+                        ->required()
+                        ->maxLength(255),
+                ]),
             ]);
     }
 

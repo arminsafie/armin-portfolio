@@ -377,7 +377,6 @@
                             My name is Armin Safaie and I am a Web Developer.
                         </p>
                         <p class="text-muted">
-                            Certainly! Here's a paragraph you can use for your portfolio:
                             As a skilled web developer, I bring a blend of creativity and
                             technical expertise to every project. Proficient in HTML, CSS,
                             SCSS, Bootstrap, and Tailwind CSS, I craft visually stunning

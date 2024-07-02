@@ -37,7 +37,7 @@ class ContactResource extends Resource
                 Forms\Components\Textarea::make('message')
                     ->required()
                     ->columnSpanFull(),
-            ]);
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
@@ -51,7 +51,8 @@ class ContactResource extends Resource
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('message')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
