@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandName('Armin safaie')
             ->login()
-                ->colors([
+            ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Slate,
                 'info' => Color::Blue,
