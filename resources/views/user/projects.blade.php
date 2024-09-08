@@ -13,20 +13,26 @@
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-11 col-xl-9 col-xxl-8">
                     @foreach($items as $item)
+                    {{$item->body}}
                         <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                             <div class="card-body p-0">
-                                <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                    <div class="p-5 d-flex flex-column gap-4" dir="rtl" >
+                                <div class="row">
+                                    <div class="col-md-8">
+                                    <div class="p-5 d-flex flex-column gap-4"  >
                                         <h2 class="fw-bolder">{{ $item->title }}</h2>
                                         <p>
                                             {{$item->body}}
                                         </p>
                                     </div>
+                                    </div>
+                                    <div class="col-md-4">
+
                                     <img
                                         class="w-100"
                                         src="{{ $item->imgUrl }}"
                                         alt="{{$item->title}}"
                                     />
+                                    </div>
                                 </div>
                             </div>
                         </div>
